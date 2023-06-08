@@ -38,6 +38,7 @@ void CircularLinkedList::addNode() {//write here
     if (LAST == NULL || no >= LAST->rollNumber) {
         if (LAST != NULL && no == LAST->rollNumber) {
             cout << "\nDuplicate number not allowed" << endl;
+            return;
         }
         /*Bug?*/newnode->next = LAST; /*step a.3 menunjuk next newnode menunjuk dirinya sendiri*/
         if (LAST != NULL) {
@@ -49,7 +50,7 @@ void CircularLinkedList::addNode() {//write here
     /*Between two nodes in the list*/
     Node* luthfi = LAST; //step b.1 menunjuk current ke last?
     Node* ramdhani = NULL; //step b.2 menunjuk previous ke nilai null
-    while (luthfi->next != NULL && (luthfi->next->rollNumber > no || ramdhani == LAST)) { //b.3 repeat
+    if (luthfi->next != NULL && luthfi->next->rollNumber > no) { //b.3 repeat
         ramdhani = luthfi; //b.4 previous menjadi current
         luthfi = luthfi->next; //b.5 current point to the next node
     }
@@ -128,7 +129,7 @@ int main() {
 	while (true) {
 		try {
 			cout << "\nMenu" << endl;
-			cout << "\1. Add a record to the list" << endl;
+			cout << "1. Add a record to the list" << endl;
 			cout << "2. Delete a record from the list" << endl;
 			cout << "3. View all the record from the list" << endl;
 			cout << "4. Exit" << endl;
@@ -141,7 +142,7 @@ int main() {
 				obj.addNode();
 				break;
 			case'2':
-				obj.delNode();
+				obj.hapus();
 				break;
 			case'3':
 				obj.traverse();
