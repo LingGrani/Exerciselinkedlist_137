@@ -88,7 +88,12 @@ bool CircularLinkedList::delNode(int rollno) {//write here
     if (search(rollno, &ramdhani, &luthfi) == false) {
         return false;
     }
-    
+    if (luthfi->next != NULL) {
+        luthfi->next = ramdhani;
+    }
+    if (ramdhani != NULL) {
+        ramdhani->next = luthfi->next;
+    }
     delete luthfi; //step 4
     return true;
 }
